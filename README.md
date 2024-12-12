@@ -292,7 +292,7 @@ hello();
 
 控制台输出:`@kaoniqiwa/my-adsame esm`
 
-注意 @kaoniqiwa/my-adsame 不会被 vite 预构建
+注意 @kaoniqiwa/my-adsame 不会被 vite 预构建，不知道为啥没预构建，不是软连接的问题，可能和文件 shasum 值有关。
 
 ## 测试 @kaoniqiwa/my-adsame 包的 cjs 版本
 
@@ -368,4 +368,68 @@ $ npm view mitt repository
 
 # 通过 git 地址安装
 $ npm i git+https://github.com/developit/mitt.git
+```
+
+## npm link 相关
+
+```bash
+$ npm list -g
+# => └── underscore@1.13.7
+
+# 将全局包软连接到本地项目
+$ npm link underscore
+```
+
+更新 src/main.js
+
+```js
+import { VERSION } from 'underscore';
+
+console.log(VERSION);
+```
+
+注意:1. npm link 只是在项目的 node_modules 目录下创建软链接，不会记录在 package.json 和 package-lock.json 中。
+
+## 创建自定义包 @kaoniqiwa/my-tencent
+
+包内容和 @kaoniqiwa/my-trina 一样，只是包名不同。
+
+## 进入 my-tencent 目录，创建全局软连接
+
+```bash
+# 查看全局包的安装路径
+$ npm prefix -g
+# /Users/xxx/.nvm/versions/node/v20.13.1
+
+
+# 给当前包创建全局软连接
+$ npm link
+
+# 验证软连接是否创建成功
+$ npm list -g
+# => └── @kaoniqiwa/my-tencent@1.0.0 -> /Users/xxx/Sites/Commonfiles/Projects/my-custom-package/packages/my-tencent
+```
+
+本地项目中使用 @kaoniqiwa/my-tencent
+
+```bash
+$ npm link @kaoniqiwa/my-tencent
+# node_modules 中会新增  @kaoniqiwa/my-tencent 包
+```
+
+## 更新 src/main.js
+
+```js
+import { hello } from '@kaoniqiwa/my-tencent';
+hello();
+```
+
+注意: npm link pkg 未在 package.json 中注册，一旦重新运行 `npm install` 指令，该包将被删除。
+
+`npm link @kaoniqiwa/my-tencent --save`
+
+## 从当前项目中删除全局软连接
+
+```bash
+$ npm unlink @kaoniqiwa/my-tencent
 ```
