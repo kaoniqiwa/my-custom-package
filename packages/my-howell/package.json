@@ -1,0 +1,23 @@
+{
+  "name": "@kaoniqiwa/my-howell",
+  "version": "1.0.0",
+  "description": "A custom package",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "scripts": {},
+  "keywords": [
+    "custom",
+    "package"
+  ],
+  "author": "kaoniqiwa",
+  "license": "MIT",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js",
+    "default": "./dist/index.mjs",
+    "module": "./dist/index.mjs"
+  },
+  "files": [
+    "dist"
+  ]
+}

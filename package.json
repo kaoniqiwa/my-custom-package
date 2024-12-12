@@ -1,0 +1,25 @@
+{
+  "name": "@kaoniqiwa/my-custom-package",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm run clear:cache && vite",
+    "build": "vite build",
+    "preview": "npm run build && vite preview",
+    "clear:cache": "rm -rf node_modules/.vite "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "vite": "^6.0.3",
+    "vite-plugin-commonjs": "^0.10.4"
+  },
+  "dependencies": {
+    "@kaoniqiwa/my-adsame": "file:packages/my-adsame",
+    "@kaoniqiwa/my-howell": "file:packages/my-howell/kaoniqiwa-my-howell-1.0.0.tgz",
+    "jquery": "https://registry.npmmirror.com/jquery/-/jquery-3.7.1.tgz",
+    "lodash-es": "^4.17.21",
+    "mitt": "github:developit/mitt"
+  }
+}
